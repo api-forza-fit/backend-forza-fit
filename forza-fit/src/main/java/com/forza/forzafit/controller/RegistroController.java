@@ -46,5 +46,13 @@ public class RegistroController {
         return new ResponseEntity<List<Registro>>(this.registroService.getAllRegistros(), HttpStatus.OK);
     }
 
+    //Endopint (url): http://localhost:8080/api/v1/registros
+    //Method: GET
+    @DeleteMapping("/registros/{id}")
+    public ResponseEntity<?> deteleRegistro(@PathVariable Long id) {
+        this.registroService.deleteRegistro(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }
