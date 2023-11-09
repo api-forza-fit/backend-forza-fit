@@ -6,10 +6,9 @@ import com.forza.forzafit.service.RegistroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -30,7 +29,6 @@ public class RegistroController {
         return new ResponseEntity<Registro>(this.registroService.createRegistro(registro), HttpStatus.CREATED);
     }
 
-
     private void validateCreate(Registro registro) {
         if (registro.getName() == null || registro.getName().trim().isEmpty())
             throw new ValidationException("El nombre del alimento es obligatorio");
@@ -38,6 +36,14 @@ public class RegistroController {
             throw new ValidationException("El nombre del empleado no debe exceder los 30 caracteres");
         if (registro.getCantidad() == null || registro.getCantidad().trim().isEmpty())
             throw new ValidationException("Debe ingresar una cantidad obligatoria");
+    }
+
+
+    //Endopint (url): http://localhost:8080/api/v1/registros
+    //Method: GET
+    @GetMapping("/registros")
+    public ResponseEntity<List<Registro>> getAllRegistros() {
+        return new ResponseEntity<List<Registro>>(this.registroService.getAllRegistros(), HttpStatus.OK);
     }
 
 
