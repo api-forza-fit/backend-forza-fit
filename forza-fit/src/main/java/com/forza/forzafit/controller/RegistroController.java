@@ -47,11 +47,18 @@ public class RegistroController {
     }
 
     //Endopint (url): http://localhost:8080/api/v1/registros
-    //Method: GET
+    //Method: DELETE
     @DeleteMapping("/registros/{id}")
     public ResponseEntity<?> deteleRegistro(@PathVariable Long id) {
         this.registroService.deleteRegistro(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //Endopint (url): http://localhost:8080/api/v1/registros
+    //Method: PUT
+    @PutMapping("/registros")
+    public ResponseEntity<Registro> updateRegistro(@RequestBody Registro registro) {
+        return new ResponseEntity<>(this.registroService.updateRegistro(registro), HttpStatus.OK);
     }
 
 

@@ -27,4 +27,8 @@ public class RegistroService {
         this.registroRepository.deleteById(id);
     }
 
+    public Registro updateRegistro(Registro registro){
+        return this.registroRepository.save(registro);
+    }
+
 }
