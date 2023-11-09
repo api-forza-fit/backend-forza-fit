@@ -4,6 +4,8 @@ import com.forza.forzafit.model.Registro;
 import com.forza.forzafit.repository.RegistroRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RegistroService {
 
@@ -17,5 +19,8 @@ public class RegistroService {
         return this.registroRepository.save(registro);
     }
 
+    public List<Registro> getAllRegistros(){
+        return registroRepository.findAll();
+    }
 
 }
