@@ -23,4 +23,12 @@ public class RegistroService {
         return registroRepository.findAll();
     }
 
+    public void deleteRegistro(Long id){
+        this.registroRepository.deleteById(id);
+    }
+
+    public Registro updateRegistro(Registro registro){
+        return this.registroRepository.save(registro);
+    }
+
 }
